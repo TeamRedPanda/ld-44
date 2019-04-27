@@ -38,6 +38,13 @@ public class ProductDisplayController : MonoBehaviour
         }
     }
 
+    internal void SellProduct(int index)
+    {
+        m_ProductsInDisplay[index] = null;
+        var productGameObject = ProductDisplayAnchors[index].gameObject.transform.GetChild(0).gameObject;
+        GameObject.Destroy(productGameObject); // @TODO: Properly remove the item.
+    }
+
     /// <summary>
     /// Returns a product not currently being seen by a client.
     /// </summary>
@@ -59,6 +66,10 @@ public class ProductDisplayController : MonoBehaviour
         }
 
         m_FreeDisplayIndexes.Add(index);
+    }
+    public Product GetProduct(int index)
+    {
+        return m_ProductsInDisplay[index];
     }
 
     internal Vector3 GetProductPosition(int productIndex)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class SellingInterfaceManagement : MonoBehaviour
 {
@@ -14,7 +15,9 @@ public class SellingInterfaceManagement : MonoBehaviour
     private Product m_sellingProduct;
 
     private int m_maxLifeAvaiable;
-    private float m_sellingProductValue;
+    private int m_sellingProductValue;
+
+    private Action<int> m_OnOffer;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +26,7 @@ public class SellingInterfaceManagement : MonoBehaviour
         testProduct.Name = "TV";
         testProduct.Cost = 30;
 
-        SellProduct( testProduct , 50 );
+        //SellProduct( testProduct , 50, null );
     }
 
     // Update is called once per frame
@@ -31,24 +34,27 @@ public class SellingInterfaceManagement : MonoBehaviour
     {
     }
 
-    public void SellProduct( Product sellingProduct , int maxLifeAvaiable )
+    public void SellProduct( Product sellingProduct , int maxLifeAvaiable, Action<int> OnOffer )
     {
         m_sellingProduct = sellingProduct;
 
         m_maxLifeAvaiable = maxLifeAvaiable;
+
+        m_OnOffer = OnOffer;
 
         SetupSellingUI();
     }
 
     public void SetSellingPrice()
     {
-        m_sellingProductValue = SellingPriceAdjustUI.GetComponent<Slider>().value;
+        m_sellingProductValue = Mathf.RoundToInt(SellingPriceAdjustUI.GetComponent<Slider>().value);
         SellingPriceTextUI.GetComponent<TextMeshProUGUI>().text = m_sellingProductValue.ToString();
     }
 
     public void Sell()
     {
         Debug.Log( "Product sold." );
+        m_OnOffer?.Invoke(m_sellingProductValue);
         SellingPanelUI.SetActive( false );
     }
 

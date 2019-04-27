@@ -22,7 +22,6 @@ public class ClientBehaviour : MonoBehaviour
     /// Buying -> After some time has passed -> Idle
     /// </summary>
     private StateMachine<ClientState> m_StateMachine = new StateMachine<ClientState>();
-    private int m_LookingProductIndex;
 
     private ClientData m_ClientData;
     private float m_DecisionTime;
@@ -41,6 +40,7 @@ public class ClientBehaviour : MonoBehaviour
         m_StateMachine.AddState(ClientState.Leaving, null, null, null);
         m_StateMachine.AddState(ClientState.Buying, BuyingEnter, BuyingUpdate, null);
         m_StateMachine.AddState(ClientState.ProductGiveUp, ProductGiveUp, null, null);
+        m_StateMachine.AddState(ClientState.ReceivingOffer, null, null, null);
 
         m_StateMachine.SetState(ClientState.Idle);
     }
@@ -51,6 +51,11 @@ public class ClientBehaviour : MonoBehaviour
         m_StateMachine.OnUpdate();
     }
 
+    public void SetState(ClientState state)
+    {
+        m_StateMachine.SetState(state);
+    }
+
     private void IdleUpdate()
     {
         if (m_ClientData.IsHappy == false) {
@@ -59,8 +64,8 @@ public class ClientBehaviour : MonoBehaviour
             return;
         }
 
-        if (m_ProductDisplayController.GrabProductToLook(out m_LookingProductIndex)) {
-            Vector3 position = m_ProductDisplayController.GetProductPosition(m_LookingProductIndex);
+        if (m_ProductDisplayController.GrabProductToLook(out m_ClientData.LookingProductIndex)) {
+            Vector3 position = m_ProductDisplayController.GetProductPosition(m_ClientData.LookingProductIndex);
 
             m_ActorMovementController.MoveTowards(position, 0f, OnArriveAtProduct);
             Debug.Log($"{gameObject.name} is moving towards a product.");
@@ -117,7 +122,7 @@ public class ClientBehaviour : MonoBehaviour
 
     private void ProductGiveUp()
     {
-        m_ProductDisplayController.StopLookingAtProduct(m_LookingProductIndex);
+        m_ProductDisplayController.StopLookingAtProduct(m_ClientData.LookingProductIndex);
         m_StateMachine.SetState(ClientState.Idle);
     }
 }
@@ -129,5 +134,6 @@ public enum ClientState
     LookingAtProduct,
     Buying,
     Leaving,
-    ProductGiveUp
+    ProductGiveUp,
+    ReceivingOffer
 }

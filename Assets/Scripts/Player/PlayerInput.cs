@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Client;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,8 +29,15 @@ public class PlayerInput : MonoBehaviour
             RaycastHit hitInfo;
 
             if (Physics.Raycast(ray, out hitInfo)) {
-                Debug.Log($"Walking to {hitInfo.point}");
-                m_MovementController.MoveTowards(hitInfo.point, 0, OnArrived);
+                // Did we collide with a client?
+                var clientInteraction = hitInfo.collider.gameObject.GetComponentInParent<ClientInteraction>();
+                if (clientInteraction != null) {
+                    Debug.Log($"Walking to client {clientInteraction.name}");
+                    m_MovementController.MoveTowards(hitInfo.point, 0.8f, () => { OnArriveAtClient(clientInteraction); });
+                } else {
+                    Debug.Log($"Walking to {hitInfo.point}");
+                    m_MovementController.MoveTowards(hitInfo.point, 0, OnArrived);
+                }
             }
         }
     }
@@ -37,5 +45,10 @@ public class PlayerInput : MonoBehaviour
     private void OnArrived()
     {
         Debug.Log("Player arrived at destination.");
+    }
+
+    private void OnArriveAtClient(ClientInteraction client)
+    {
+        client.StartTransaction();
     }
 }

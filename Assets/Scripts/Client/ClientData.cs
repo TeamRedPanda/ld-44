@@ -9,6 +9,8 @@ namespace Assets.Scripts.Client
 {
     class ClientData : MonoBehaviour
     {
+        private ProductDisplayController m_ProductDisplayController;
+
         public int Age = 20;
         public int Happiness = 100;
 
@@ -30,11 +32,36 @@ namespace Assets.Scripts.Client
             }
         }
 
+        public Product LookingProduct {
+            get {
+                return m_ProductDisplayController.GetProduct(LookingProductIndex);
+            }
+        }
+
+        public int YearsUntilDeath {
+            get {
+                return c_DeathAge - Age;
+            }
+        }
+
+        public int LookingProductIndex;
+
         // How long does it take in seconds to age 1 year.
         private const float c_SecondsPerYear = 5f;
+
+        internal void IncreaseAge(int value)
+        {
+            Age += value;
+        }
+
         private const int c_DeathAge = 100;
 
         private float m_CurrentYear = 0f;
+
+        void Start()
+        {
+            m_ProductDisplayController = GameObject.FindObjectOfType<ProductDisplayController>();
+        }
 
         void Update()
         {
