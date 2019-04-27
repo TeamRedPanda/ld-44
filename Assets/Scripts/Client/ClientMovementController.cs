@@ -10,6 +10,6 @@ public class ClientMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        clientAgent.SetDestination(product.transform.position);
+        //clientAgent.SetDestination(product.transform.position);
     }
 }
