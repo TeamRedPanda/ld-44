@@ -21,7 +21,7 @@ public class ClientBehaviour : MonoBehaviour
     /// Buying -> Wait Player interaction -> Idle
     /// Buying -> After some time has passed -> Idle
     /// </summary>
-    private ClientState m_State;
+    private StateMachine<ClientState> m_StateMachine = new StateMachine<ClientState>();
     private int m_LookingProductIndex;
 
     private ClientData m_ClientData;
@@ -35,51 +35,50 @@ public class ClientBehaviour : MonoBehaviour
 
         m_ClientData = GetComponent<ClientData>();
 
-        m_State = ClientState.Idle;
+        m_StateMachine.AddState(ClientState.Idle, null, IdleUpdate, null);
+        m_StateMachine.AddState(ClientState.LookingAtProduct, LookingAtProductEnter, LookingAtProductUpdate, null);
+        m_StateMachine.AddState(ClientState.WalkingToProduct, null, null, null);
+        m_StateMachine.AddState(ClientState.Leaving, null, null, null);
+        m_StateMachine.AddState(ClientState.Buying, BuyingEnter, BuyingUpdate, null);
+        m_StateMachine.AddState(ClientState.ProductGiveUp, ProductGiveUp, null, null);
+
+        m_StateMachine.SetState(ClientState.Idle);
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (m_State) {
-            case ClientState.Idle:
-                IdleUpdate();
-                break;
-            case ClientState.LookingAtProduct:
-                LookingAtProductUpdate();
-                break;
-            case ClientState.Buying:
-                BuyingUpdate();
-                break;
-            default:
-                break;
-        }
+        m_StateMachine.OnUpdate();
     }
 
     private void IdleUpdate()
     {
         if (m_ClientData.IsHappy == false) {
-            m_State = ClientState.Leaving;
             Debug.Log($"{gameObject.name} is leaving the store.");
+            m_StateMachine.SetState(ClientState.Leaving);
             return;
         }
 
         if (m_ProductDisplayController.GrabProductToLook(out m_LookingProductIndex)) {
-            m_State = ClientState.WalkingToProduct;
             Vector3 position = m_ProductDisplayController.GetProductPosition(m_LookingProductIndex);
 
             m_ActorMovementController.MoveTowards(position, 0f, OnArriveAtProduct);
             Debug.Log($"{gameObject.name} is moving towards a product.");
+            m_StateMachine.SetState(ClientState.WalkingToProduct);
         }
     }
 
     private void OnArriveAtProduct()
     {
+        Debug.Log($"{gameObject.name} has arrived at product.");
+        m_StateMachine.SetState(ClientState.LookingAtProduct);
+    }
+
+    private void LookingAtProductEnter()
+    {
         // @TODO : Replace hard-coded value
         // Wait between 0.5s and 1.5s to decide to buy or not.
         m_DecisionTime = UnityEngine.Random.Range(0.5f, 1.5f);
-        m_State = ClientState.LookingAtProduct;
-        Debug.Log($"{gameObject.name} has arrived at product.");
     }
 
     private void LookingAtProductUpdate()
@@ -88,17 +87,20 @@ public class ClientBehaviour : MonoBehaviour
 
         if (m_DecisionTime <= 0) {
             if (m_ClientData.WantToBuy) {
-                m_State = ClientState.Buying;
-                // @TODO : Replace hard-coded value
-                // Wait between 10s and 15s for the player to offer a price.
-                m_DecisionTime = UnityEngine.Random.Range(10f, 15f);
                 Debug.Log($"{gameObject.name} decides to buy a product.");
+                m_StateMachine.SetState(ClientState.Buying);
             } else {
-                m_State = ClientState.Idle;
-                m_ProductDisplayController.StopLookingAtProduct(m_LookingProductIndex);
                 Debug.Log($"{gameObject.name} decides to keep looking around.");
+                m_StateMachine.SetState(ClientState.ProductGiveUp);
             }
         }
+    }
+
+    private void BuyingEnter()
+    {
+        // @TODO : Replace hard-coded value
+        // Wait between 10s and 15s for the player to offer a price.
+        m_DecisionTime = UnityEngine.Random.Range(10f, 15f);
     }
 
     private void BuyingUpdate()
@@ -107,11 +109,16 @@ public class ClientBehaviour : MonoBehaviour
 
         if (m_DecisionTime <= 0) {
             // Player took too long, we give up.
-            m_State = ClientState.Idle;
             m_ClientData.IncreaseHappiness(-10); // @TODO : Remove hard-coded value.
-            m_ProductDisplayController.StopLookingAtProduct(m_LookingProductIndex);
             Debug.Log($"{gameObject.name} gave up waiting for an offer.");
+            m_StateMachine.SetState(ClientState.ProductGiveUp);
         }
+    }
+
+    private void ProductGiveUp()
+    {
+        m_ProductDisplayController.StopLookingAtProduct(m_LookingProductIndex);
+        m_StateMachine.SetState(ClientState.Idle);
     }
 }
 
@@ -121,5 +128,6 @@ public enum ClientState
     WalkingToProduct,
     LookingAtProduct,
     Buying,
-    Leaving
+    Leaving,
+    ProductGiveUp
 }
