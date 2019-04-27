@@ -108,6 +108,8 @@ public class ClientBehaviour : MonoBehaviour
         if (m_DecisionTime <= 0) {
             // Player took too long, we give up.
             m_State = ClientState.Idle;
+            m_ClientData.IncreaseHappiness(-10); // @TODO : Remove hard-coded value.
+            m_ProductDisplayController.StopLookingAtProduct(m_LookingProductIndex);
             Debug.Log($"{gameObject.name} gave up waiting for an offer.");
         }
     }
