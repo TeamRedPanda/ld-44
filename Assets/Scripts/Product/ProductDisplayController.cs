@@ -59,4 +59,9 @@ public class ProductDisplayController : MonoBehaviour
 
         m_FreeDisplayIndexes.Add(index);
     }
+
+    internal Vector3 GetProductPosition(int productIndex)
+    {
+        return ProductDisplayAnchors[productIndex].transform.position;
+    }
 }
