@@ -34,6 +34,7 @@ public class ProductDisplayController : MonoBehaviour
 
             var productAsset = ProductAssets.RandomElement();
             Instantiate(productAsset.Prefab, ProductDisplayAnchors[i].transform);
+            m_ProductsInDisplay[i] = productAsset;
         }
     }
 
