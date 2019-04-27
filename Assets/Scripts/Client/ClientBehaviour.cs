@@ -51,9 +51,6 @@ public class ClientBehaviour : MonoBehaviour
             case ClientState.Buying:
                 BuyingUpdate();
                 break;
-            case ClientState.Leaving:
-                LeavingUpdate();
-                break;
             default:
                 break;
         }
@@ -63,6 +60,7 @@ public class ClientBehaviour : MonoBehaviour
     {
         if (m_ClientData.IsHappy == false) {
             m_State = ClientState.Leaving;
+            Debug.Log($"{gameObject.name} is leaving the store.");
             return;
         }
 
@@ -81,7 +79,7 @@ public class ClientBehaviour : MonoBehaviour
         // Wait between 0.5s and 1.5s to decide to buy or not.
         m_DecisionTime = UnityEngine.Random.Range(0.5f, 1.5f);
         m_State = ClientState.LookingAtProduct;
-        Debug.Log($"{gameObject.name} is arrived at product.");
+        Debug.Log($"{gameObject.name} has arrived at product.");
     }
 
     private void LookingAtProductUpdate()
@@ -112,11 +110,6 @@ public class ClientBehaviour : MonoBehaviour
             m_State = ClientState.Idle;
             Debug.Log($"{gameObject.name} gave up waiting for an offer.");
         }
-    }
-
-    private void LeavingUpdate()
-    {
-        Debug.Log($"{gameObject.name} is leaving the store.");
     }
 }
 
