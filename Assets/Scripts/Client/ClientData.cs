@@ -12,12 +12,38 @@ namespace Assets.Scripts.Client
         public int Age = 20;
         public int Happiness = 100;
 
-        public bool IsCloseToDying { get; internal set; }
+        public bool IsDead {
+            get {
+                return Age >= c_DeathAge;
+            }
+        }
+
         public bool IsHappy {
             get {
                 return Happiness > 0;
             }
         }
-        public bool WantToBuy { get; internal set; }
+        public bool WantToBuy {
+            get {
+                // 50% chance to want to buy.
+                return UnityEngine.Random.Range(0, 2) == 0;
+            }
+        }
+
+        // How long does it take in seconds to age 1 year.
+        private const float c_SecondsPerYear = 5f;
+        private const int c_DeathAge = 100;
+
+        private float m_CurrentYear = 0f;
+
+        void Update()
+        {
+            m_CurrentYear += Time.deltaTime;
+
+            if (m_CurrentYear >= c_SecondsPerYear) {
+                Age++;
+                m_CurrentYear -= c_SecondsPerYear;
+            }
+        }
     }
 }
