@@ -45,5 +45,12 @@ namespace Assets.Scripts.Client
                 m_CurrentYear -= c_SecondsPerYear;
             }
         }
+
+        internal void IncreaseHappiness(int value)
+        {
+            // Older people get angry faster.
+            float factor = 1 + (float)Age / (float)c_DeathAge;
+            Happiness += Mathf.RoundToInt(value * factor);
+        }
     }
 }
