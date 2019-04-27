@@ -1584,47 +1584,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1269495097}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1371206843 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4518272557737435036, guid: 6152769717e1cce4480f95328aa1b60d,
-    type: 3}
-  m_PrefabInstance: {fileID: 4518272556422081319}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &1371206844
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371206843}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &1371206845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371206843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4144e34f9dc4eba4d823dcdbb416110d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Camera: {fileID: 75505331}
 --- !u!1 &1404924799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2640,7 +2599,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1371206845, guid: 6152769717e1cce4480f95328aa1b60d, type: 3}
+    - target: {fileID: 8054279472906395436, guid: 6152769717e1cce4480f95328aa1b60d,
+        type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 75505331}

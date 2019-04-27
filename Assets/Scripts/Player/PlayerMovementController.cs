@@ -6,8 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerMovementController : MonoBehaviour
 {
-    [SerializeField]
-    private Camera m_Camera = default;
+    private Camera m_Camera;
 
     private NavMeshAgent m_NavMeshAgent;
 
@@ -15,6 +14,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         m_NavMeshAgent = GetComponent<NavMeshAgent>();
 
+        m_Camera = Camera.main;
         if (m_Camera == null) {
             Debug.LogError("Camera not set for player movement controller.");
         }
