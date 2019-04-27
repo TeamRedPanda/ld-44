@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDisplayController : MonoBehaviour
+public class ProductDisplayController : MonoBehaviour
 {
     public List<Product> ProductAssets;
 
