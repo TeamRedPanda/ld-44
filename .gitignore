@@ -39,3 +39,4 @@ Thumbs.db
 # Red Panda Specific #
 # ================== #
 [Bb]uild*/
+Assets/Scripts/Client.meta
