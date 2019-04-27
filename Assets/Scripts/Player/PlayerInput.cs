@@ -1,18 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
-public class PlayerMovementController : MonoBehaviour
+[RequireComponent(typeof(ActorMovementController))]
+public class PlayerInput : MonoBehaviour
 {
     private Camera m_Camera;
 
-    private NavMeshAgent m_NavMeshAgent;
+    private ActorMovementController m_MovementController;
 
     void Start()
     {
-        m_NavMeshAgent = GetComponent<NavMeshAgent>();
+        m_MovementController = GetComponent<ActorMovementController>();
 
         m_Camera = Camera.main;
         if (m_Camera == null) {
@@ -28,8 +29,13 @@ public class PlayerMovementController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hitInfo)) {
                 Debug.Log($"Walking to {hitInfo.point}");
-                m_NavMeshAgent.SetDestination(hitInfo.point);
+                m_MovementController.MoveTowards(hitInfo.point, 0, OnArrived);
             }
         }
+    }
+
+    private void OnArrived()
+    {
+        Debug.Log("Player arrived at destination.");
     }
 }
