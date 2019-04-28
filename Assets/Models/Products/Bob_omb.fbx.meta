@@ -39,7 +39,22 @@ ModelImporter:
     4300006: Key
     4300008: Handle
     10800000: Light
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bomb body
+    second: {fileID: 2100000, guid: cd173ad396e4e86438dec7e5cb73344d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bomb eyes
+    second: {fileID: 2100000, guid: cd173ad396e4e86438dec7e5cb73344d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bomb yellow
+    second: {fileID: 2100000, guid: cd173ad396e4e86438dec7e5cb73344d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
