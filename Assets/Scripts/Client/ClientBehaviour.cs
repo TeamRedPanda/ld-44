@@ -8,6 +8,8 @@ using UnityEngine;
 [RequireComponent(typeof(ActorMovementController))]
 public class ClientBehaviour : MonoBehaviour
 {
+    public EmoteView m_EmoteView;
+
     private ProductDisplayController m_ProductDisplayController;
     private ActorMovementController m_ActorMovementController;
     private ClientSpawnSystem m_ClientSpawnSystem;
@@ -124,6 +126,7 @@ public class ClientBehaviour : MonoBehaviour
         // @TODO : Replace hard-coded value
         // Wait between 10s and 15s for the player to offer a price.
         m_DecisionTime = UnityEngine.Random.Range(10f, 15f);
+        m_EmoteView.ShowEmote(EmoteType.Buying);
     }
 
     private void BuyingUpdate()
@@ -135,6 +138,7 @@ public class ClientBehaviour : MonoBehaviour
             m_ClientData.IncreaseHappiness(-10); // @TODO : Remove hard-coded value.
             Debug.Log($"{gameObject.name} gave up waiting for an offer.");
             m_StateMachine.SetState(ClientState.ProductGiveUp);
+            m_EmoteView.ShowEmote(EmoteType.Angry);
         }
     }
 

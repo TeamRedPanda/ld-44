@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[ExecuteInEditMode]
 public class CameraFacingBillboard : MonoBehaviour
 {
     public Camera m_Camera;
