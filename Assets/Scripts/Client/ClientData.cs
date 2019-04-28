@@ -12,7 +12,7 @@ namespace Assets.Scripts.Client
         private ProductDisplayController m_ProductDisplayController;
 
         public int Age = 20;
-        public int Happiness = 100;
+        private int happiness = 100;
 
         public bool IsDead {
             get {
@@ -44,6 +44,16 @@ namespace Assets.Scripts.Client
             }
         }
 
+        public int Happiness {
+            get => happiness; set {
+                if (value > 100)
+                    value = 100;
+                if (value < 0)
+                    value = 0;
+                happiness = value;
+            }
+        }
+
         public int LookingProductIndex;
 
         // How long does it take in seconds to age 1 year.
@@ -61,6 +71,14 @@ namespace Assets.Scripts.Client
         void Start()
         {
             m_ProductDisplayController = GameObject.FindObjectOfType<ProductDisplayController>();
+        }
+
+        public void AcceptTransaction(int offer, int cost)
+        {
+            IncreaseAge(offer);
+
+            // Update happiness.
+            IncreaseHappiness(Mathf.RoundToInt(offer / cost * -5));
         }
 
         void Update()

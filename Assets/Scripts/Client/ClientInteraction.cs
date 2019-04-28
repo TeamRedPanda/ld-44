@@ -38,12 +38,13 @@ namespace Assets.Scripts.Client
 
         private void OnOfferReceived(int offer)
         {
-            bool accept = ShouldAcceptOffer(offer, m_ClientData.LookingProduct.Cost);
+            var cost = m_ClientData.LookingProduct.Cost;
+            bool accept = ShouldAcceptOffer(offer, cost);
 
             if (accept) {
                 m_ScoreSystem.Collect(offer);
                 m_ProductDisplayController.SellProduct(m_ClientData.LookingProductIndex);
-                m_ClientData.IncreaseAge(offer);
+                m_ClientData.AcceptTransaction(offer, cost);
                 m_ClientBehaviour.SetState(ClientState.Idle);
                 Debug.Log($"Client {name} accepted offer of {offer}.");
             } else {
@@ -55,12 +56,20 @@ namespace Assets.Scripts.Client
 
         private bool ShouldAcceptOffer(int offer, int cost)
         {
+            //(m_ClientData.Happiness - 50) / 100f * 20f; // 10% increase for max happiness. -10% for 0 happiness.
+            float happinessFactor = Map(m_ClientData.Happiness, 0, 100, 0.9f, 1.1f);
+            Debug.Log($"{happinessFactor} factor");
+            var maxAcceptablePrice = Mathf.RoundToInt(offer * happinessFactor);
             // Discount? YES!
-            if (offer < cost)
+            if (offer < maxAcceptablePrice)
                 return true;
 
-            // @TODO: Add proper calculation. Should be affected by happiness?
             return false;
+        }
+
+        private float Map(float s, float a1, float a2, float b1, float b2)
+        {
+            return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
         }
     }
 }
