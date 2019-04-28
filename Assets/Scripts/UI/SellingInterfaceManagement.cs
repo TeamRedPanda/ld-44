@@ -36,6 +36,10 @@ public class SellingInterfaceManagement : MonoBehaviour
 
     public void SellProduct( Product sellingProduct , int maxLifeAvaiable, Action<int> OnOffer )
     {
+        if (sellingProduct == null) {
+            Debug.LogError("Selling product is null?");
+        }
+
         m_sellingProduct = sellingProduct;
 
         m_maxLifeAvaiable = maxLifeAvaiable;

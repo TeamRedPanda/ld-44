@@ -13,6 +13,8 @@ public class ClientBehaviour : MonoBehaviour
     private ProductDisplayController m_ProductDisplayController;
     private ActorMovementController m_ActorMovementController;
     private ClientSpawnSystem m_ClientSpawnSystem;
+    private ScoreSystem m_ScoreSystem;
+    private DeathSystem m_DeathSystem;
 
     /// <summary>
     /// State machine for client behaviour :
@@ -32,13 +34,19 @@ public class ClientBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_ProductDisplayController = GameObject.FindObjectOfType<ProductDisplayController>();
-        m_ActorMovementController = GetComponent<ActorMovementController>();
-        m_ClientSpawnSystem = FindObjectOfType<ClientSpawnSystem>();
-
-        m_ClientData = GetComponent<ClientData>();
-
+        FindReferences();
         SetupStates();
+    }
+
+    private void FindReferences()
+    {
+        m_ProductDisplayController  = FindObjectOfType<ProductDisplayController>();
+        m_ClientSpawnSystem         = FindObjectOfType<ClientSpawnSystem>();
+        m_ScoreSystem               = FindObjectOfType<ScoreSystem>();
+        m_DeathSystem               = FindObjectOfType<DeathSystem>();
+
+        m_ActorMovementController = GetComponent<ActorMovementController>();
+        m_ClientData = GetComponent<ClientData>();
     }
 
     private void SetupStates()
@@ -50,8 +58,17 @@ public class ClientBehaviour : MonoBehaviour
         m_StateMachine.AddState(ClientState.Buying, BuyingEnter, BuyingUpdate, null);
         m_StateMachine.AddState(ClientState.ProductGiveUp, ProductGiveUp, null, null);
         m_StateMachine.AddState(ClientState.ReceivingOffer, null, null, null);
+        m_StateMachine.AddState(ClientState.Dying, DyingEnter, null, null);
 
         m_StateMachine.SetState(ClientState.Idle);
+    }
+
+    private void DyingEnter()
+    {
+        // @TODO: Remove hard-coded value.
+        m_DeathSystem.PlayDeathAnimation(this.transform.position);
+        m_ScoreSystem.Collect(100);
+        m_ClientSpawnSystem.DespawnClient(this.gameObject);
     }
 
     private void LeavingEnter()
@@ -84,12 +101,20 @@ public class ClientBehaviour : MonoBehaviour
             return;
         }
 
+        if (m_ClientData.IsDead) {
+            m_StateMachine.SetState(ClientState.Dying);
+            return;
+        }
+
         if (m_ProductDisplayController.GrabProductToLook(out m_ClientData.LookingProductIndex)) {
             Vector3 position = m_ProductDisplayController.GetProductPosition(m_ClientData.LookingProductIndex);
 
             m_ActorMovementController.MoveTowards(position, 0f, OnArriveAtProduct);
             Debug.Log($"{gameObject.name} is moving towards a product.");
             m_StateMachine.SetState(ClientState.WalkingToProduct);
+        } else {
+            Debug.Log($"Store is empty, {gameObject.name} is leaving");
+            m_StateMachine.SetState(ClientState.Leaving);
         }
     }
 
@@ -157,5 +182,6 @@ public enum ClientState
     Buying,
     Leaving,
     ProductGiveUp,
-    ReceivingOffer
+    ReceivingOffer,
+    Dying
 }
