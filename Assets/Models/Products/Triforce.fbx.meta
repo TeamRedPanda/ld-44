@@ -19,7 +19,12 @@ ModelImporter:
     3300002: Circle
     4300000: Circle
     10800000: Light
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: cd173ad396e4e86438dec7e5cb73344d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
