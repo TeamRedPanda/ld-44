@@ -11,14 +11,17 @@ namespace Assets.Scripts.Client
     {
         private ClientData m_ClientData;
         private ClientBehaviour m_ClientBehaviour;
+       
 
         private SellingInterfaceManagement m_OfferView;
         private ProductDisplayController m_ProductDisplayController;
+        private ScoreSystem m_ScoreSystem;
 
         void Start()
         {
             m_OfferView = FindObjectOfType<SellingInterfaceManagement>();
             m_ProductDisplayController = GameObject.FindObjectOfType<ProductDisplayController>();
+            m_ScoreSystem = FindObjectOfType<ScoreSystem>();
 
             m_ClientData = GetComponent<ClientData>();
             m_ClientBehaviour = GetComponent<ClientBehaviour>();
@@ -38,6 +41,7 @@ namespace Assets.Scripts.Client
             bool accept = ShouldAcceptOffer(offer, m_ClientData.LookingProduct.Cost);
 
             if (accept) {
+                m_ScoreSystem.Collect(offer);
                 m_ProductDisplayController.SellProduct(m_ClientData.LookingProductIndex);
                 m_ClientData.IncreaseAge(offer);
                 m_ClientBehaviour.SetState(ClientState.Idle);
