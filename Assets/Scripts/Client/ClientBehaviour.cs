@@ -10,6 +10,7 @@ public class ClientBehaviour : MonoBehaviour
 {
     private ProductDisplayController m_ProductDisplayController;
     private ActorMovementController m_ActorMovementController;
+    private ClientSpawnSystem m_ClientSpawnSystem;
 
     /// <summary>
     /// State machine for client behaviour :
@@ -31,18 +32,35 @@ public class ClientBehaviour : MonoBehaviour
     {
         m_ProductDisplayController = GameObject.FindObjectOfType<ProductDisplayController>();
         m_ActorMovementController = GetComponent<ActorMovementController>();
+        m_ClientSpawnSystem = FindObjectOfType<ClientSpawnSystem>();
 
         m_ClientData = GetComponent<ClientData>();
 
+        SetupStates();
+    }
+
+    private void SetupStates()
+    {
         m_StateMachine.AddState(ClientState.Idle, null, IdleUpdate, null);
         m_StateMachine.AddState(ClientState.LookingAtProduct, LookingAtProductEnter, LookingAtProductUpdate, null);
         m_StateMachine.AddState(ClientState.WalkingToProduct, null, null, null);
-        m_StateMachine.AddState(ClientState.Leaving, null, null, null);
+        m_StateMachine.AddState(ClientState.Leaving, LeavingEnter, null, null);
         m_StateMachine.AddState(ClientState.Buying, BuyingEnter, BuyingUpdate, null);
         m_StateMachine.AddState(ClientState.ProductGiveUp, ProductGiveUp, null, null);
         m_StateMachine.AddState(ClientState.ReceivingOffer, null, null, null);
 
         m_StateMachine.SetState(ClientState.Idle);
+    }
+
+    private void LeavingEnter()
+    {
+        var exitPosition = m_ClientSpawnSystem.GetSpawnLocation();
+        m_ActorMovementController.MoveTowards(exitPosition.position, 0f, OnExitArrive);
+    }
+
+    private void OnExitArrive()
+    {
+        m_ClientSpawnSystem.DespawnClient(this.gameObject);
     }
 
     // Update is called once per frame
