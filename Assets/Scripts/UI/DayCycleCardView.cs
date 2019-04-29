@@ -9,6 +9,8 @@ public class DayCycleCardView : MonoBehaviour
     private Action m_OnFadeInOutFinish;
     private float m_CallbackDelay;
 
+    public TMPro.TextMeshProUGUI Text;
+
     private bool m_CallbackReady;
 
     // Start is called before the first frame update
@@ -25,8 +27,14 @@ public class DayCycleCardView : MonoBehaviour
         m_Animator.SetTrigger("FadeIn");
     }
 
+    public void SetCardText(string text)
+    {
+        Text.text = text + " Start";
+    }
+
     public void FadeOut(Action callback, float callbackDelay = 0f)
     {
+        Debug.Log("Card Fade Out");
         m_OnFadeInOutFinish = callback;
         m_CallbackDelay = callbackDelay;
         m_CallbackReady = false;
