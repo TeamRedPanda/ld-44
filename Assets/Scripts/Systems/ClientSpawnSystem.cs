@@ -1,6 +1,4 @@
 ﻿using Assets.Scripts.Client;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ClientSpawnSystem : MonoBehaviour
@@ -8,7 +6,7 @@ public class ClientSpawnSystem : MonoBehaviour
     public Transform ClientParent;
     public Transform SpawnLocation;
 
-    public GameObject ClientPrefab;
+    public GameObject[] ClientPrefabs;
 
     private int ClientCount = 0;
 
@@ -54,9 +52,16 @@ public class ClientSpawnSystem : MonoBehaviour
     {
         ClientCount++;
 
+        GameObject ClientPrefab = GetRandomClientPrefab();
         var clientGameObject = Instantiate(ClientPrefab, SpawnLocation.position, SpawnLocation.rotation, ClientParent);
         var clientData = clientGameObject.GetComponent<ClientData>();
         clientData.Age = startingAge;
+    }
+
+    private GameObject GetRandomClientPrefab()
+    {
+        var index = Random.Range(0, ClientPrefabs.Length);
+        return ClientPrefabs[index];
     }
 
     public void DespawnClient(GameObject client)
