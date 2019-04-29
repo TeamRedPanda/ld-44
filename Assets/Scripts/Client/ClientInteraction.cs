@@ -68,7 +68,7 @@ namespace Assets.Scripts.Client
             //(m_ClientData.Happiness - 50) / 100f * 20f; // 10% increase for max happiness. -10% for 0 happiness.
             float happinessFactor = Map(m_ClientData.Happiness, 0, 100, 0.9f, 1.1f);
             Debug.Log($"{happinessFactor} factor");
-            var maxAcceptablePrice = Mathf.RoundToInt(offer * happinessFactor);
+            var maxAcceptablePrice = Mathf.RoundToInt(cost * happinessFactor);
             // Discount? YES!
             if (offer < maxAcceptablePrice)
                 return true;
