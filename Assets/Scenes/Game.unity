@@ -2328,7 +2328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemSold: {fileID: 8300000, guid: be36304fba651a1429670ff4b2ffeab9, type: 3}
   ClientLeave: {fileID: 0}
-  ClientEnter: {fileID: 0}
+  ClientEnter: {fileID: 8300000, guid: b6700d5dbc56fd24a9ce2bffb535ce38, type: 3}
   ClientDies: {fileID: 8300000, guid: 587d2c45376f7e44bb8a3ee79e674c5f, type: 3}
   AudioClipPlayerPrefab: {fileID: 5218230357009369759, guid: 429a8125401628a489240b4c77f9abf8,
     type: 3}
