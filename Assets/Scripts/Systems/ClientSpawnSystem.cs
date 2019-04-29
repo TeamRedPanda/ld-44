@@ -20,7 +20,7 @@ public class ClientSpawnSystem : MonoBehaviour
     public int MinimumSpawnAge = 20;
     public int MaximumSpawnAge = 60;
 
-    private List<GameObject> m_SpawnedClients;
+    private List<GameObject> m_SpawnedClients = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
