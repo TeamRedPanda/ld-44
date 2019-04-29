@@ -1884,7 +1884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 368896c031cbe504d9269c2b02c019e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemSold: {fileID: 0}
+  ItemSold: {fileID: 8300000, guid: be36304fba651a1429670ff4b2ffeab9, type: 3}
   ClientLeave: {fileID: 0}
   ClientEnter: {fileID: 0}
   ClientDies: {fileID: 8300000, guid: 587d2c45376f7e44bb8a3ee79e674c5f, type: 3}
