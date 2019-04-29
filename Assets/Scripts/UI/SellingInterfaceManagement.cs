@@ -12,6 +12,8 @@ public class SellingInterfaceManagement : MonoBehaviour
     public GameObject SellingProductNameUI;
     public GameObject SellingPriceAdjustUI;
 
+    public GameObject ScreenInputBlock;
+
     private Product m_sellingProduct;
 
     private int m_maxLifeAvaiable;
@@ -60,6 +62,7 @@ public class SellingInterfaceManagement : MonoBehaviour
         Debug.Log( "Product sold." );
         m_OnOffer?.Invoke(m_sellingProductValue);
         SellingPanelUI.SetActive( false );
+        ScreenInputBlock.SetActive(false);
     }
 
     void SetupSellingUI()
@@ -75,5 +78,6 @@ public class SellingInterfaceManagement : MonoBehaviour
         SellingPriceAdjustUI.GetComponent<Slider>().value = m_sellingProductValue;
 
         SellingPanelUI.SetActive( true );
+        ScreenInputBlock.SetActive(true);
     }
 }

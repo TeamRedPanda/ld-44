@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(ActorMovementController))]
 public class PlayerInput : MonoBehaviour
@@ -29,6 +30,10 @@ public class PlayerInput : MonoBehaviour
             RaycastHit hitInfo;
 
             if (Physics.Raycast(ray, out hitInfo)) {
+                // If UI is open don't process player movement.
+                if (EventSystem.current.IsPointerOverGameObject())
+                    return;
+
                 // Did we collide with a client?
                 var clientInteraction = hitInfo.collider.gameObject.GetComponentInParent<ClientInteraction>();
                 if (clientInteraction != null) {
