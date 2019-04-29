@@ -30,7 +30,6 @@ public class DayCycleSystem : MonoBehaviour
     private void ResumeClientSpawn()
     {
         ClientSpawnSystem.ResumeSpawn();
-        CardView.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
