@@ -13,5 +13,6 @@ public class ScoreSystem : MonoBehaviour
     {
         SoulsCollected += souls;
         OnScoreChanged?.Invoke(SoulsCollected);
+        StatisticsSystem.Instance.TotalYearsCollected += souls;
     }
 }

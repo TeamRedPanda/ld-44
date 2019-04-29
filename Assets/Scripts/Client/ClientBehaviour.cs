@@ -80,6 +80,7 @@ public class ClientBehaviour : MonoBehaviour
     private void DyingEnter()
     {
         // @TODO: Remove hard-coded value.
+        m_DeathSystem.CollectDeath();
         m_DeathSystem.PlayDeathAnimation(this.transform.position);
         m_ScoreSystem.Collect(100);
         m_ClientSpawnSystem.DespawnClient(this.gameObject);

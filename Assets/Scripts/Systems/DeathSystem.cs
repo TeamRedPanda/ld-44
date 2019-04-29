@@ -21,4 +21,9 @@ public class DeathSystem : MonoBehaviour
     {
         Debug.LogWarning("Implement death animation particles and stuff.");
     }
+
+    internal void CollectDeath()
+    {
+        StatisticsSystem.Instance.TotalDeaths++;
+    }
 }

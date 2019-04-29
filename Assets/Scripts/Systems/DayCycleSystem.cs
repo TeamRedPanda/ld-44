@@ -16,7 +16,7 @@ public class DayCycleSystem : MonoBehaviour
     private const int c_FinalDay = 4;
 
     private float m_CurrentDayTime = 0f;
-    private const float c_DayTimeDuration = 5f;
+    private const float c_DayTimeDuration = 45f;
 
     private bool IsGameOver = false;
 
@@ -72,7 +72,9 @@ public class DayCycleSystem : MonoBehaviour
         ClientSpawnSystem.RemoveAllClients();
         ClientSpawnSystem.PauseSpawn();
 
-        m_EndGameCardView.Setup(156, 15, true);
+        StatisticsSystem statistics = StatisticsSystem.Instance;
+
+        m_EndGameCardView.Setup(statistics.TotalYearsCollected, statistics.TotalDeaths, statistics.Passed);
         m_EndGameCardView.Show();
     }
 
