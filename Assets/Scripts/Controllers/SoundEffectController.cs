@@ -37,12 +37,18 @@ public class SoundEffectController : MonoBehaviour
     {
         AudioClip clip = m_Instance.GetAudioClipForType(type);
 
+        if (clip == null)
+            return;
+
         AudioClipPlayer player = Instantiate(m_Instance.AudioClipPlayerPrefab, m_Instance.transform).GetComponent<AudioClipPlayer>();
         player.Play(clip);
     }
 
     public static void PlayEffect(AudioClip clip)
     {
+        if (clip == null)
+            return;
+
         AudioClipPlayer player = Instantiate(m_Instance.AudioClipPlayerPrefab, m_Instance.transform).GetComponent<AudioClipPlayer>();
         player.Play(clip);
     }
