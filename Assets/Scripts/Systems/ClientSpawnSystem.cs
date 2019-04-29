@@ -56,6 +56,8 @@ public class ClientSpawnSystem : MonoBehaviour
         var clientGameObject = Instantiate(ClientPrefab, SpawnLocation.position, SpawnLocation.rotation, ClientParent);
         var clientData = clientGameObject.GetComponent<ClientData>();
         clientData.Age = startingAge;
+
+        SoundEffectController.PlayEffect(EffectType.ClientEnter);
     }
 
     private GameObject GetRandomClientPrefab()

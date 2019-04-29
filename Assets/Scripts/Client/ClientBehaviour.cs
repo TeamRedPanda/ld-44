@@ -90,6 +90,8 @@ public class ClientBehaviour : MonoBehaviour
     private void OnExitArrive()
     {
         m_ClientSpawnSystem.DespawnClient(this.gameObject);
+
+        SoundEffectController.PlayEffect(EffectType.ClientLeave);
     }
 
     // Update is called once per frame
