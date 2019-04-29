@@ -11,6 +11,11 @@ ModelImporter:
     100010: Key
     100012: Light
     100014: Camera
+    100016: Armature
+    100018: BezierCurve
+    100020: Key 1
+    100022: Key_end
+    100024: Mball
     400000: //RootNode
     400002: Body
     400004: Eyes
@@ -19,6 +24,11 @@ ModelImporter:
     400010: Key
     400012: Light
     400014: Camera
+    400016: Armature
+    400018: BezierCurve
+    400020: Key 1
+    400022: Key_end
+    400024: Mball
     2000000: Camera
     2100000: Bomb body
     2100002: Bomb eyes
@@ -28,17 +38,24 @@ ModelImporter:
     2300004: Feet
     2300006: Handle
     2300008: Key
+    2300010: BezierCurve
+    2300012: Mball
     3300000: Body
     3300002: Eyes
     3300004: Feet
     3300006: Handle
     3300008: Key
+    3300010: BezierCurve
+    3300012: Mball
     4300000: Body
     4300002: Eyes
     4300004: Feet
     4300006: Key
     4300008: Handle
+    4300010: BezierCurve
+    4300012: Mball
     10800000: Light
+    2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
