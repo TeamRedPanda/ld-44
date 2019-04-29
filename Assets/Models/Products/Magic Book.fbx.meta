@@ -1,0 +1,174 @@
+fileFormatVersion: 2
+guid: 5bf7d55198887e045816df4494aac92b
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Book
+    100002: Borders
+    100004: Coat of Arms
+    100006: Corner Detail
+    100008: Crystal
+    100010: //RootNode
+    100012: Magic Words
+    100014: Middle Frame
+    100016: Root
+    100018: Sun
+    100020: Magic Words.001
+    400000: Book
+    400002: Borders
+    400004: Coat of Arms
+    400006: Corner Detail
+    400008: Crystal
+    400010: //RootNode
+    400012: Magic Words
+    400014: Middle Frame
+    400016: Root
+    400018: Sun
+    400020: Magic Words.001
+    2100000: Book Cover
+    2100002: Paper
+    2100004: Frame
+    2100006: Coat of Arms
+    2100008: Crystal
+    2100010: Magic Text
+    2300000: Book
+    2300002: Borders
+    2300004: Coat of Arms
+    2300006: Corner Detail
+    2300008: Crystal
+    2300010: Magic Words
+    2300012: Middle Frame
+    2300014: Magic Words.001
+    3300000: Book
+    3300002: Borders
+    3300004: Coat of Arms
+    3300006: Corner Detail
+    3300008: Crystal
+    3300010: Magic Words
+    3300012: Middle Frame
+    3300014: Magic Words.001
+    4300000: Book
+    4300002: Borders
+    4300004: Coat of Arms
+    4300006: Corner Detail
+    4300008: Crystal
+    4300010: Middle Frame
+    4300012: Magic Words
+    4300014: Magic Words.001
+    10800000: Sun
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Book Cover
+    second: {fileID: 2100000, guid: 248fc807ec80f31448f5e7fb7d782312, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Coat of Arms
+    second: {fileID: 2100000, guid: 2c008ce8e9c8caf4ab3cd8b5fb55698d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Crystal
+    second: {fileID: 2100000, guid: d37c982c3fad81448ae21159c00b5184, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frame
+    second: {fileID: 2100000, guid: d66c6c8fdcc121b4aa9a781e50c331ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Magic Text
+    second: {fileID: 2100000, guid: 360a948ddb0a66b44bbe2639484a182c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paper
+    second: {fileID: 2100000, guid: 512a8552d83afc74e9cca3e5aa4e75c2, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
