@@ -16,7 +16,7 @@ public class DayCycleSystem : MonoBehaviour
     private const int c_FinalDay = 4;
 
     private float m_CurrentDayTime = 0f;
-    private const float c_DayTimeDuration = 45f;
+    public float DayTimeDuration = 405f;
 
     private bool IsGameOver = false;
 
@@ -41,10 +41,10 @@ public class DayCycleSystem : MonoBehaviour
 
         m_CurrentDayTime += Time.deltaTime;
 
-        if (m_CurrentDayTime >= c_DayTimeDuration) {
+        if (m_CurrentDayTime >= DayTimeDuration) {
             m_CurrentDay++;
             StartDay(m_CurrentDay);
-            m_CurrentDayTime -= c_DayTimeDuration;
+            m_CurrentDayTime -= DayTimeDuration;
             Debug.LogWarning("Starting new day!");
         }
     }

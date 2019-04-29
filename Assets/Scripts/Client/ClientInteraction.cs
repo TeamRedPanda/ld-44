@@ -27,6 +27,11 @@ namespace Assets.Scripts.Client
             m_ClientBehaviour = GetComponent<ClientBehaviour>();
         }
 
+        void OnDisable()
+        {
+            m_OfferView.CancelTransaction();
+        }
+
         public bool TryStartTransaction()
         {
             if (m_ClientBehaviour.IsActiveState(ClientState.Buying) == false)

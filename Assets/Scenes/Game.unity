@@ -692,6 +692,7 @@ MonoBehaviour:
   ClientSpawnSystem: {fileID: 961361450}
   ProductDisplayController: {fileID: 954991724}
   m_EndGameCardView: {fileID: 952193609}
+  DayTimeDuration: 45
 --- !u!1 &380975992
 GameObject:
   m_ObjectHideFlags: 0

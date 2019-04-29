@@ -51,6 +51,13 @@ public class SellingInterfaceManagement : MonoBehaviour
         SetupSellingUI();
     }
 
+    internal void CancelTransaction()
+    {
+        m_OnOffer = null;
+        SellingPanelUI.SetActive(false);
+        ScreenInputBlock.SetActive(false);
+    }
+
     public void SetSellingPrice()
     {
         m_sellingProductValue = Mathf.RoundToInt(SellingPriceAdjustUI.GetComponent<Slider>().value);
