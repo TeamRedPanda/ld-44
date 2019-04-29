@@ -1534,14 +1534,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductAssets:
-  - Name: Blue Box
-    Cost: 50
-    Prefab: {fileID: 9065313389129779194, guid: 760a9e6faf6d3074aa1b4ce93afffc76,
+  - Name: Blue Guitar
+    Cost: 49
+    Prefab: {fileID: 594037788092599921, guid: 40813c4a0036bcf408be2a024e14d7b3, type: 3}
+  - Name: Bob Omb
+    Cost: 40
+    Prefab: {fileID: 1266945825662123869, guid: 1b1253ff4e191e94ebdf4a5b1895e8fc,
       type: 3}
-  - Name: Green Box
-    Cost: 41
-    Prefab: {fileID: 9065313389129779194, guid: 7f4b47a1fce8c1146ab571ca10d4fbf9,
+  - Name: Dragon Egg
+    Cost: 32
+    Prefab: {fileID: 3041255032268743618, guid: 48c5429162bc4e24b8c4b049b927a5fa,
       type: 3}
+  - Name: Fire Flower
+    Cost: 26
+    Prefab: {fileID: 7960706563631116039, guid: 7924a31a3a676254e96ad68840ba8405,
+      type: 3}
+  - Name: Magic Book
+    Cost: 29
+    Prefab: {fileID: 594037788092599921, guid: ac3c10847ce30b249be819983f7bd037, type: 3}
+  - Name: Mimic
+    Cost: 36
+    Prefab: {fileID: 594037788092599921, guid: 06b8902585d7a1644a714cd4b4166399, type: 3}
+  - Name: Treasure Chest
+    Cost: 30
+    Prefab: {fileID: 594037788092599921, guid: 70060d729c9ec91498b0771ea2a48741, type: 3}
+  - Name: Triforce
+    Cost: 24
+    Prefab: {fileID: 594037788092599921, guid: 2a689cf47b29fc842b7884554c79a49d, type: 3}
   ProductDisplayAnchors:
   - {fileID: 8317775045404593754}
   - {fileID: 2008497635}
