@@ -77,6 +77,8 @@ public class ClientBehaviour : MonoBehaviour
         m_DeathSystem.PlayDeathAnimation(this.transform.position);
         m_ScoreSystem.Collect(100);
         m_ClientSpawnSystem.DespawnClient(this.gameObject);
+
+        SoundEffectController.PlayEffect(EffectType.ClientDies);
     }
 
     private void LeavingEnter()
