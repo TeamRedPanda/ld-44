@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Client;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class ClientSpawnSystem : MonoBehaviour
     public Transform SpawnLocation;
 
     public GameObject[] ClientPrefabs;
+
+    public ProductDisplayController ProductDisplayController;
 
     private int ClientCount = 0;
 
@@ -55,14 +58,23 @@ public class ClientSpawnSystem : MonoBehaviour
             return;
         }
 
-        var age = Random.Range(MinimumSpawnAge, MaximumSpawnAge + 1);
+        if (IsStoreFull()) {
+            return;
+        }
+
+        var age = UnityEngine.Random.Range(MinimumSpawnAge, MaximumSpawnAge + 1);
         SpawnClient(age);
         ResetSpawnCooldown();
     }
 
+    private bool IsStoreFull()
+    {
+        return ProductDisplayController.GetFreeProductCount() == 0;
+    }
+
     private void ResetSpawnCooldown()
     {
-        TimeUntilNextCheck = Random.Range(MinimumSpawnInterval, MaximumSpawnInterval);
+        TimeUntilNextCheck = UnityEngine.Random.Range(MinimumSpawnInterval, MaximumSpawnInterval);
     }
 
     public void SpawnClient(int startingAge)
@@ -91,7 +103,7 @@ public class ClientSpawnSystem : MonoBehaviour
 
     private GameObject GetRandomClientPrefab()
     {
-        var index = Random.Range(0, ClientPrefabs.Length);
+        var index = UnityEngine.Random.Range(0, ClientPrefabs.Length);
         return ClientPrefabs[index];
     }
 

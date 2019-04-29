@@ -91,6 +91,11 @@ public class ProductDisplayController : MonoBehaviour
         return true;
     }
 
+    public int GetFreeProductCount()
+    {
+        return m_FreeDisplayIndexes.Count;
+    }
+
     public void StopLookingAtProduct(int index)
     {
         if (m_FreeDisplayIndexes.Contains(index)) {

@@ -2519,6 +2519,7 @@ MonoBehaviour:
   ClientPrefabs:
   - {fileID: 7731604151518037651, guid: 4aefd066d276eef45abbbcc6fb8ae018, type: 3}
   - {fileID: 4425266780417698341, guid: 4f12ea7eb178c824898baa1abcb21a5d, type: 3}
+  ProductDisplayController: {fileID: 954991724}
   MinimumSpawnInterval: 1
   MaximumSpawnInterval: 3
   MaxClientsInStore: 5
