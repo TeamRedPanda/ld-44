@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DayCycleSystem : MonoBehaviour
 {
-    private const int c_WaitBeforeFadeOut = 2000;
+    private const float c_WaitBeforeFadeOut = 2f;
     public DayCycleCardView CardView;
     public ClientSpawnSystem ClientSpawnSystem;
     public ProductDisplayController ProductDisplayController;
@@ -21,11 +21,7 @@ public class DayCycleSystem : MonoBehaviour
     void Start()
     {
         CardView.gameObject.SetActive(true);
-        Task.Delay(c_WaitBeforeFadeOut).ContinueWith(t =>
-        {
-            CardView.FadeOut(null);
-        }
-        );
+        CardView.FadeOut(c_WaitBeforeFadeOut, null);
     }
 
     // Update is called once per frame
@@ -41,18 +37,24 @@ public class DayCycleSystem : MonoBehaviour
         }
     }
 
+    IEnumerator ExecuteAfterTime(float time, Action task)
+    {
+        yield return new WaitForSeconds(time);
+        task();
+    }
+
     private void StartDay(int day)
     {
         string dayText = GetDayText(day);
         CardView.SetCardText(dayText);
-        CardView.FadeIn(ResetShopState);
+        CardView.FadeIn(callback:ResetShopState);
     }
 
     private void ResetShopState()
     {
         ClientSpawnSystem.RemoveAllClients();
         ProductDisplayController.ResetStoreProducts();
-        Task.Delay(c_WaitBeforeFadeOut).ContinueWith(t => CardView.FadeOut(null));
+        CardView.FadeOut(c_WaitBeforeFadeOut, null);
     }
 
     private string GetDayText(int day)
