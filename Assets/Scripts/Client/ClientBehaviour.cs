@@ -60,7 +60,7 @@ public class ClientBehaviour : MonoBehaviour
     public void Leave()
     {
         m_StateMachine.SetState(ClientState.Leaving);
-        OnExitArrive();
+        m_ClientSpawnSystem.DespawnClient(this.gameObject);
     }
 
     private void SetupStates()
