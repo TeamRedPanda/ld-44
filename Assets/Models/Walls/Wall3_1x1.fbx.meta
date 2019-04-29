@@ -45,7 +45,17 @@ ModelImporter:
     4300008: Wall2 1x1
     4300010: Wall3 1x1
     4300012: Wall4 1x1
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: External Blocks
+    second: {fileID: 2100000, guid: 42a69e85aca66794297e4a02bff5ff0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall Base Color
+    second: {fileID: 2100000, guid: 2dee085d443c6d24cb11333f459a30ea, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
