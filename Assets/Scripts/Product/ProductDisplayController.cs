@@ -40,9 +40,17 @@ public class ProductDisplayController : MonoBehaviour
 
     internal void SellProduct(int index)
     {
+        PlayProductSoldSound(m_ProductsInDisplay[index]);
         m_ProductsInDisplay[index] = null;
         var productGameObject = ProductDisplayAnchors[index].gameObject.transform.GetChild(0).gameObject;
         GameObject.Destroy(productGameObject); // @TODO: Properly remove the item.
+
+    }
+
+    private void PlayProductSoldSound(Product product)
+    {
+        // @TODO: Implement unique sound fx
+        SoundEffectController.PlayEffect(EffectType.ItemSold);
     }
 
     /// <summary>
