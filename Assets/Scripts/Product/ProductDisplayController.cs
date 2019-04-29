@@ -47,6 +47,30 @@ public class ProductDisplayController : MonoBehaviour
 
     }
 
+    public void ResetStoreProducts()
+    {
+        // Remove products in display.
+        for (int i = 0; i < m_ProductsInDisplay.Length; i++) {
+            var product = m_ProductsInDisplay[i];
+
+            // Don't touch empty displays.
+            if (product == null)
+                continue;
+
+            m_ProductsInDisplay[i] = null;
+            var productGameObject = ProductDisplayAnchors[i].gameObject.transform.GetChild(0).gameObject;
+            GameObject.Destroy(productGameObject); // @TODO: Properly remove the item.
+        }
+
+        // Fill products to display.
+        FillEmptyProductDisplays();
+
+        // Add products to free indexes.
+        m_FreeDisplayIndexes.Clear();
+        for (int i = 0; i < m_ProductsInDisplay.Length; i++)
+            m_FreeDisplayIndexes.Add(i);
+    }
+
     private void PlayProductSoldSound(Product product)
     {
         // @TODO: Implement unique sound fx

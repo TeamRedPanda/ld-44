@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Client;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ClientSpawnSystem : MonoBehaviour
@@ -18,6 +19,8 @@ public class ClientSpawnSystem : MonoBehaviour
 
     public int MinimumSpawnAge = 20;
     public int MaximumSpawnAge = 60;
+
+    private List<GameObject> m_SpawnedClients = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +60,19 @@ public class ClientSpawnSystem : MonoBehaviour
         var clientData = clientGameObject.GetComponent<ClientData>();
         clientData.Age = startingAge;
 
+        m_SpawnedClients.Add(clientGameObject);
+
         SoundEffectController.PlayEffect(EffectType.ClientEnter);
+    }
+
+    public void RemoveAllClients()
+    {
+        for(int i = m_SpawnedClients.Count - 1; i >= 0; i--) {
+            var client = m_SpawnedClients[i];
+            client.GetComponent<ClientBehaviour>().Leave();
+        }
+
+        Debug.Assert(m_SpawnedClients.Count == 0, "Spawned clients still contain clients after removing.");
     }
 
     private GameObject GetRandomClientPrefab()
@@ -69,6 +84,7 @@ public class ClientSpawnSystem : MonoBehaviour
     public void DespawnClient(GameObject client)
     {
         ClientCount--;
+        m_SpawnedClients.Remove(client);
         Destroy(client);
     }
 

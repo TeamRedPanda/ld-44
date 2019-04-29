@@ -57,6 +57,12 @@ public class ClientBehaviour : MonoBehaviour
         m_ClientData = GetComponent<ClientData>();
     }
 
+    public void Leave()
+    {
+        m_StateMachine.SetState(ClientState.Leaving);
+        OnExitArrive();
+    }
+
     private void SetupStates()
     {
         m_StateMachine.AddState(ClientState.Idle, null, IdleUpdate, null);
