@@ -16,6 +16,11 @@ public class ClientBehaviour : MonoBehaviour
     private ScoreSystem m_ScoreSystem;
     private DeathSystem m_DeathSystem;
 
+    public bool IsActiveState(ClientState state)
+    {
+        return m_StateMachine.GetState() == state;
+    }
+
     /// <summary>
     /// State machine for client behaviour :
     /// Idle -> Find an item to look -> WalkingToProduct

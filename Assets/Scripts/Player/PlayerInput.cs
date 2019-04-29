@@ -49,6 +49,6 @@ public class PlayerInput : MonoBehaviour
 
     private void OnArriveAtClient(ClientInteraction client)
     {
-        client.StartTransaction();
+        client.TryStartTransaction();
     }
 }

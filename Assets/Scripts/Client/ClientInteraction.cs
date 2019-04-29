@@ -27,13 +27,17 @@ namespace Assets.Scripts.Client
             m_ClientBehaviour = GetComponent<ClientBehaviour>();
         }
 
-        public void StartTransaction()
+        public bool TryStartTransaction()
         {
+            if (m_ClientBehaviour.IsActiveState(ClientState.Buying) == false)
+                return false;
+
             m_ClientBehaviour.SetState(ClientState.ReceivingOffer);
 
             var product = m_ClientData.LookingProduct;
 
             m_OfferView.SellProduct(product, m_ClientData.YearsUntilDeath, OnOfferReceived);
+            return true;
         }
 
         private void OnOfferReceived(int offer)

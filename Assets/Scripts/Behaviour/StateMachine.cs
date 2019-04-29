@@ -6,6 +6,7 @@ using UnityEngine;
 public class StateMachine<TName>
 {
     IDictionary<TName, State> m_States = new Dictionary<TName, State>();
+    TName m_CurrentStateName = default(TName);
     State m_CurrentState;
 
     private class State
@@ -31,6 +32,11 @@ public class StateMachine<TName>
         m_States.Add(name, state);
     }
 
+    internal TName GetState()
+    {
+        return m_CurrentStateName;
+    }
+
     public void OnUpdate()
     {
         m_CurrentState?.OnStateUpdate?.Invoke();
@@ -41,6 +47,8 @@ public class StateMachine<TName>
         // Only transition states if state exists.
         if (m_States.ContainsKey(name) == false)
             throw new KeyNotFoundException();
+
+        m_CurrentStateName = name;
 
         m_CurrentState?.OnStateExit?.Invoke();
 
