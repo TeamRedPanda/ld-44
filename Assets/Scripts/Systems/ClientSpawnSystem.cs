@@ -21,6 +21,7 @@ public class ClientSpawnSystem : MonoBehaviour
     public int MaximumSpawnAge = 60;
 
     private List<GameObject> m_SpawnedClients = new List<GameObject>();
+    private bool m_IsSpawnPaused = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +29,22 @@ public class ClientSpawnSystem : MonoBehaviour
         ResetSpawnCooldown();
     }
 
+    public void PauseSpawn()
+    {
+        m_IsSpawnPaused = true;
+    }
+
+    public void ResumeSpawn()
+    {
+        m_IsSpawnPaused = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (m_IsSpawnPaused)
+            return;
+
         TimeUntilNextCheck -= Time.deltaTime;
 
         if (TimeUntilNextCheck > 0)

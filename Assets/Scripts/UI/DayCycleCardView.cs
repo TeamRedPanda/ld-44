@@ -88,8 +88,10 @@ public class DayCycleCardView : MonoBehaviour
         if (m_CallbackDelay > 0)
             return;
 
-        m_OnFadeInOutFinish?.Invoke();
+        // Prevent errors where the callback queues another trigger.
+        var callback = m_OnFadeInOutFinish;
         m_OnFadeInOutFinish = null;
+        callback?.Invoke();
     }
 
     private void UpdateDelayedTriggers()
@@ -97,7 +99,6 @@ public class DayCycleCardView : MonoBehaviour
         for (int i = m_DelayedTriggers.Count - 1; i >= 0; i--) {
             var trigger = m_DelayedTriggers[i];
 
-            Debug.Log($"{trigger.Trigger} : {trigger.TriggerTime} out of {Time.time}");
             if (trigger.TriggerTime <= Time.time) {
                 Debug.Log($"Playing delayed trigger {trigger.Trigger}");
                 m_Animator.SetTrigger(trigger.Trigger);
