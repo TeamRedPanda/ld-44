@@ -4435,7 +4435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProductAssets:
   - Name: Blue Guitar
-    Cost: 49
+    Cost: 37
     Prefab: {fileID: 594037788092599921, guid: 40813c4a0036bcf408be2a024e14d7b3, type: 3}
   - Name: Bob Omb
     Cost: 40
@@ -4459,7 +4459,7 @@ MonoBehaviour:
     Cost: 30
     Prefab: {fileID: 594037788092599921, guid: 70060d729c9ec91498b0771ea2a48741, type: 3}
   - Name: Triforce
-    Cost: 24
+    Cost: 28
     Prefab: {fileID: 594037788092599921, guid: 2a689cf47b29fc842b7884554c79a49d, type: 3}
   ProductDisplayAnchors:
   - {fileID: 8317775045404593754}
