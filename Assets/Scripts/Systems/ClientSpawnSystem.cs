@@ -67,9 +67,12 @@ public class ClientSpawnSystem : MonoBehaviour
 
     public void RemoveAllClients()
     {
-        foreach(var client in m_SpawnedClients) {
+        for(int i = m_SpawnedClients.Count - 1; i >= 0; i--) {
+            var client = m_SpawnedClients[i];
             client.GetComponent<ClientBehaviour>().Leave();
         }
+
+        Debug.Assert(m_SpawnedClients.Count == 0, "Spawned clients still contain clients after removing.");
     }
 
     private GameObject GetRandomClientPrefab()
