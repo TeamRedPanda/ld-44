@@ -31,6 +31,9 @@ public class ClientBehaviour : MonoBehaviour
     private ClientData m_ClientData;
     private float m_DecisionTime;
 
+    private const float c_BuyingEmoteFrequency = 2.5f;
+    private float m_BuyingEmoteCooldown = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -152,6 +155,8 @@ public class ClientBehaviour : MonoBehaviour
         // Wait between 10s and 15s for the player to offer a price.
         m_DecisionTime = UnityEngine.Random.Range(10f, 15f);
         m_EmoteView.ShowEmote(EmoteType.Buying);
+
+        m_BuyingEmoteCooldown = 0f;
     }
 
     private void BuyingUpdate()
@@ -164,6 +169,13 @@ public class ClientBehaviour : MonoBehaviour
             Debug.Log($"{gameObject.name} gave up waiting for an offer.");
             m_StateMachine.SetState(ClientState.ProductGiveUp);
             m_EmoteView.ShowEmote(EmoteType.Angry);
+        }
+
+        m_BuyingEmoteCooldown += Time.deltaTime;
+
+        if (m_BuyingEmoteCooldown >= c_BuyingEmoteFrequency) {
+            m_EmoteView.ShowEmote(EmoteType.Buying);
+            m_BuyingEmoteCooldown = 0f;
         }
     }
 
