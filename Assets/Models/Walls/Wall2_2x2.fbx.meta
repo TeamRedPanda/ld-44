@@ -11,7 +11,22 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Wall2 2x2
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: External Blocks
+    second: {fileID: 2100000, guid: 42a69e85aca66794297e4a02bff5ff0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Internal Blocks
+    second: {fileID: 2100000, guid: e45f031ad251da3489e69b948acd1c53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall Base Color
+    second: {fileID: 2100000, guid: 2dee085d443c6d24cb11333f459a30ea, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
