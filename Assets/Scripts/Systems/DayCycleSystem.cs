@@ -30,6 +30,7 @@ public class DayCycleSystem : MonoBehaviour
     private void ResumeClientSpawn()
     {
         ClientSpawnSystem.ResumeSpawn();
+        CardView.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -63,6 +64,7 @@ public class DayCycleSystem : MonoBehaviour
             return;
         }
         string dayText = GetDayText(day);
+        CardView.gameObject.SetActive(true);
         CardView.SetCardText(dayText);
         CardView.FadeIn(callback:ResetShopState);
     }
