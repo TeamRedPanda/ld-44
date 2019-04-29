@@ -13,6 +13,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Wall Base Color
     second: {fileID: 2100000, guid: 2dee085d443c6d24cb11333f459a30ea, type: 2}
   materials:
     importMaterials: 1
